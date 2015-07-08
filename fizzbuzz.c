@@ -13,7 +13,7 @@ struct
 int main()
 {
 	FILE *file = fopen("fizzbuzz-out.txt", "w");
-	if(fp == NULL)
+	if(file == NULL)
 	{
 		exit(-1);
 	}
@@ -45,7 +45,7 @@ int main()
 		{
 			fprintf(file, "%d\n", nibbles.i);
 		}
-		i++;
+		nibbles.i++;
 	}
 	fclose(file);
 	return 0;
