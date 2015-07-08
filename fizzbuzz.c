@@ -25,9 +25,9 @@ int main()
 
 	nibbles.fifteen = 15;
 	nibbles.two = 2;
-	for (nibbles.i = 1; nibbles.i <=15; nibbles.i++)
+	while(1)
 	{
-		if(nibbles.i == nibbles.fifteen)
+		if(!(nibbles.i ^ nibbles.fifteen))
 		{
 			fprintf(file, "FizzBuzz\n");
 			break;
@@ -45,6 +45,7 @@ int main()
 		{
 			fprintf(file, "%d\n", nibbles.i);
 		}
+		i++;
 	}
 	fclose(file);
 	return 0;
@@ -52,8 +53,5 @@ int main()
 
 int left_shift_circular(input, shift)
 {
-	nibbles.val1 = input;
-	nibbles.val2 = shift;
-	nibbles.math = (nibbles.val1 << nibbles.val2) | (nibbles.val1 >> (4 - nibbles.val2));
-	return nibbles.math;
+	return (input << shift) | (input >> (4 - shift));
 }
