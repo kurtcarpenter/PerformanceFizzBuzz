@@ -12,11 +12,16 @@ struct
 
 int main()
 {
+	FILE *file = fopen("fizzbuzz-out.txt", "w");
+	if(fp == NULL)
+	{
+		exit(-1);
+	}
+
 	int start = 1;
 	int stop;
-	printf("Please enter upper bound of fizzbuzz: ");
+	printf("Please enter upper bound of fizzbuzz, at least 1: ");
 	scanf("%d", &stop);
-	printf("\n\n");
 
 	nibbles.fifteen = 15;
 	nibbles.two = 2;
@@ -24,26 +29,24 @@ int main()
 	{
 		if(nibbles.i == nibbles.fifteen)
 		{
-			printf("FizzBuzz");
+			fprintf(file, "FizzBuzz\n");
 			break;
 		}
 		if (!((nibbles.i ^ left_shift_circular(nibbles.i, nibbles.two)) ^  nibbles.fifteen))
 		{
-			printf("Fizz");
+			fprintf(file, "Fizz\n");
 		}
 		else if (!((nibbles.i ^ 10) ^ nibbles.fifteen)
 			|| !((nibbles.i ^ 10) ^ 0))
 		{
-			printf("Buzz");
+			fprintf(file, "Buzz\n");
 		}
 		else
 		{
-			printf("%d", nibbles.i);
+			fprintf(file, "%d\n", nibbles.i);
 		}
-		printf("\n");
 	}
-	printf("\n");
-	getchar();
+	fclose(file);
 	return 0;
 }
 
