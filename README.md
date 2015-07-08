@@ -20,7 +20,7 @@ Beginning at the numeral known as 1, and concluding at the large number known as
 * If divisible by 5, output "Buzz"*
 * If divisible by neither, output the number itself
 
-*N.B. if the number is divisible by both 3 AND 5 (hard to imagine, many programmers struggle with this concept), i.e. 15, then output "FizzBuzz"
+*N.B. if the number is divisible by both 3 AND 5 (hard to imagine, many programmers struggle with this concept), e.g. 15, then output "FizzBuzz"
 
 ##FAQ 
 
