@@ -1,6 +1,6 @@
 # PerformanceFizzBuzz
 
-PerformanceFizzBuzz is a no-nonsense implementation of FizzBuzz. Inspired by solutions such as <a href="https://github.com/EnterpriseQualityCoding/FizzBuzzEnterpriseEdition">FizzBuzzEntepriseEdition</a>, this solution optimizes FizzBuzz for the highest degree of performance.
+PerformanceFizzBuzz is a no-nonsense implementation of FizzBuzz. Inspired by solutions such as <a href="https://github.com/EnterpriseQualityCoding/FizzBuzzEnterpriseEdition">FizzBuzzEnterpriseEdition</a>, this solution optimizes FizzBuzz for the highest degree of performance.
 
 ## Pillars of Quality
 
