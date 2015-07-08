@@ -53,5 +53,8 @@ int main()
 
 int left_shift_circular(input, shift)
 {
-	return (input << shift) | (input >> (4 - shift));
+	nibbles.val1 = input;
+	nibbles.val2 = shift;
+	nibbles.math = (nibbles.val1 << nibbles.val2) | (nibbles.val1 >> (4 - nibbles.val2));
+	return nibbles.math;
 }
