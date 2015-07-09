@@ -19,33 +19,35 @@ int main()
 	}
 
 	int start = 1;
-	int stop;
+	int stop = 100;
+	/*
 	printf("Please enter upper bound of fizzbuzz, at least 1: ");
-	scanf("%d", &stop);
+	scanf("%d", &stop);*/
 
 	nibbles.fifteen = 15;
 	nibbles.two = 2;
+	char *vals[15];
+
 	while(1)
 	{
 		if(!(nibbles.i ^ nibbles.fifteen))
 		{
-			fprintf(file, "FizzBuzz\n");
+			vals[nibbles.i - 1] = "FizzBuzz\n";
 			break;
 		}
-		if (!((nibbles.i ^ left_shift_circular(nibbles.i, nibbles.two)) ^  nibbles.fifteen))
-		{
-			fprintf(file, "Fizz\n");
-		}
-		else if (!((nibbles.i ^ 10) ^ nibbles.fifteen)
-			|| !((nibbles.i ^ 10) ^ 0))
-		{
-			fprintf(file, "Buzz\n");
-		}
-		else
-		{
-			fprintf(file, "%d\n", nibbles.i);
+		if (!((nibbles.i ^ left_shift_circular(nibbles.i, nibbles.two)) ^  nibbles.fifteen)) {
+			vals[nibbles.i - 1] = "Fizz\n";
+		}	else if (!((nibbles.i ^ 10) ^ nibbles.fifteen)
+			|| !((nibbles.i ^ 10) ^ 0)) {
+			vals[nibbles.i - 1] = "Buzz\n";
+		}	else {
+			vals[nibbles.i - 1] = "%d\n";
 		}
 		nibbles.i++;
+	}
+
+	for (int start = 1; start <= end; start++) {
+		fprintf(file, vals[(start - 1) % 15], start);
 	}
 	fclose(file);
 	return 0;
