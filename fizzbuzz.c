@@ -1,14 +1,8 @@
 #include <stdio.h>
 
-struct
-{
-	unsigned int i : 4;
-	unsigned int fifteen : 4;
-	unsigned int math : 4;
-	unsigned int val1 : 4;
-	unsigned int val2 : 4;
-	unsigned int two : 4;
-} nibbles;
+#define THREE 3
+#define FIVE 5
+#define FIFTEEN 15
 
 int main()
 {
@@ -18,45 +12,76 @@ int main()
 		exit(-1);
 	}
 
-	int start = 1;
-	int stop = 100;
-	/*
-	printf("Please enter upper bound of fizzbuzz, at least 1: ");
-	scanf("%d", &stop);*/
-
-	nibbles.fifteen = 15;
-	nibbles.two = 2;
-	char *vals[15];
-
-	while(1)
-	{
-		if(!(nibbles.i ^ nibbles.fifteen))
+	char i = 1;
+	char stop = 100;
+	char fizzed;
+	
+	for (i; i <= stop; i++) {
+		fizzed = 0;
+		if (divsByThree(i))
 		{
-			vals[nibbles.i - 1] = "FizzBuzz\n";
-			break;
+			fizzed = 1;
+			fprintf(file, "Fizz");
 		}
-		if (!((nibbles.i ^ left_shift_circular(nibbles.i, nibbles.two)) ^  nibbles.fifteen)) {
-			vals[nibbles.i - 1] = "Fizz\n";
-		}	else if (!((nibbles.i ^ 10) ^ nibbles.fifteen)
-			|| !((nibbles.i ^ 10) ^ 0)) {
-			vals[nibbles.i - 1] = "Buzz\n";
-		}	else {
-			vals[nibbles.i - 1] = "%d\n";
+		if (divsByFive(i))
+		{
+			fprintf(file, "Buzz");
 		}
-		nibbles.i++;
+		else if (!fizzed)
+		{
+			fprintf(file, "%d", i);
+		}
+		fprintf(file, "\n");
 	}
 
-	for (int start = 1; start <= end; start++) {
-		fprintf(file, vals[(start - 1) % 15], start);
-	}
 	fclose(file);
 	return 0;
 }
 
-int left_shift_circular(input, shift)
+int divsByThree(int a) /* Mersenne Prime */
 {
-	nibbles.val1 = input;
-	nibbles.val2 = shift;
-	nibbles.math = (nibbles.val1 << nibbles.val2) | (nibbles.val1 >> (4 - nibbles.val2));
-	return nibbles.math;
+	char intermediate = (a & THREE) + (a >> 0b10);
+	if (!(intermediate ^ THREE)) /* equals 3 */
+	{
+		return 1;
+	}
+	if (intermediate >> 0b10 ^ 0) /* larger than 3 */
+	{
+		return divsByThree(intermediate);
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+int divsByFive(int a) /* Mod by 15, bring close to 5 */
+{
+	char r = modFifteen(a);
+	if (!r) /* a % 15 == 0 */
+	{
+		return 1;
+	}
+	if (r > 9)
+	{
+		r = r - 5;
+	}
+	return (!(r ^ FIVE)); /* a % 5 == 0 */
+}
+
+int modFifteen(int a) /* Mersenne Number */
+{
+	char intermediate = (a & FIFTEEN) + (a >> 0b100);
+	if (!(intermediate ^ FIFTEEN)) /* equals 15 */
+	{
+		return 0;
+	}
+	if (intermediate >> 0b100 ^ 0) /* larger than 15 */
+	{
+		return modFifteen(intermediate);
+	}
+	else
+	{
+		return intermediate;
+	}
 }
